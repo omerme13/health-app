@@ -1,0 +1,59 @@
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &__header {
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-self: stretch;
+        padding: 4rem 8rem;
+        gap: 2rem;
+    }
+
+    .diagnose {
+        flex: 1;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+
+        &__content {
+            height: 100%;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+
+            &--good {
+                background-color: var(--success-with-transparency);
+                color: var(--success);
+                text-transform: uppercase;
+            }
+            &--bad {
+                background-color: var(--danger-with-transparency);
+                color: var(--danger);
+                text-transform: uppercase;
+            }
+
+            &-name {
+                font-weight: normal;
+                color: currentColor;
+            }
+        }
+    }
+
+    &__error {
+        background-color: rgb(248, 122, 76);
+        color: white;
+        border: 1px solid orangered;
+        padding: 1rem;
+        border-radius: 5px;
+        font-size: 2rem;
+    }
+}
