@@ -10,8 +10,13 @@ const App = () => {
     const [isErrorShown, setIsErrorShown] = useState(false);
     
     const isContentShown = testDiagnose.data || testDiagnose.isLoading;
+    const errMessage = error?.response?.data.message || 'No connection to server';
 
     const getContent = () => {
+        if (error) {
+            return '';
+        }
+
         if (testDiagnose.isLoading) {
             return "Loading...";
         }
@@ -32,8 +37,8 @@ const App = () => {
     };
 
     const getContentClass = () => {
-        if (!testDiagnose.data || testDiagnose.isLoading) {
-            return;
+        if (!testDiagnose.data || testDiagnose.isLoading || error) {
+            return '';
         }
 
         if (!testDiagnose.isFound) {
@@ -70,7 +75,7 @@ const App = () => {
                 </div>
             </div>
             {isErrorShown && (
-                <div className="app__error">{error.response.data.message}</div>
+                <div className="app__error">{errMessage}</div>
             )}
         </div>
     );
