@@ -24,11 +24,20 @@ const Form = ({ setTestDiagnose, setError }) => {
         }
     };
 
-    const handleSendOnEnter = e => {
+    const handleSendOnEnter = (e) => {
         if (e.key === "Enter") {
             handleSendButton();
         }
     };
+
+    const handleTestResultInput = (e) => {
+        if (e.target.value.includes("-")) {
+            setTestResult("");
+            return;
+        }
+
+        setTestResult(e.target.value);
+    }
 
     useEffect(() => {
         setTestDiagnose({ ...data, isLoading: loading });
@@ -36,7 +45,7 @@ const Form = ({ setTestDiagnose, setError }) => {
 
     useEffect(() => {
         if (error) {
-            setError(error)
+            setError(error);
         }
     }, [setError, error]);
 
@@ -47,14 +56,14 @@ const Form = ({ setTestDiagnose, setError }) => {
                     type="text"
                     className="form__input"
                     value={testName}
-                    onChange={e => setTestName(e.target.value)}
+                    onChange={(e) => setTestName(e.target.value)}
                     placeholder="Enter test's name"
                 />
                 <input
                     type="number"
                     className="form__input"
                     value={testResult || ""}
-                    onChange={e => setTestResult(e.target.value)}
+                    onChange={handleTestResultInput}
                     placeholder="Enter test's result"
                 />
             </div>
